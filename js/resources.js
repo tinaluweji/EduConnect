@@ -83,7 +83,7 @@ document.addEventListener('click', function (e) {
     if (!id) return;
 
     if (e.target.closest(".view-resource")) return viewResource(+id);
-    if (e.target.closest(".download-resource")) return downloadResource(+id);
+    if (e.target.closest(".download-resource")) return download-resource" data-id="+id);
 });
 
 
@@ -93,7 +93,7 @@ function viewResource(id) {
     alert(`Viewing Resource → ${r.title}\nTS: ${r.tsNumber}`);
 }
 
-function downloadResource(id) {
+function download-resource" data-id="id) {
     const r = resources.find(x => x.id === id);
     alert(`Downloading → ${r.title}\nTS: ${r.tsNumber}`);
 }

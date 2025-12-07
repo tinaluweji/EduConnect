@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Toggle FAQ items
 function toggleFAQ(item) {
-    item.classList.toggle('active');
+    if (!item) return;
+    if (item.classList) item.classList.toggle('active');
 }
 
 // Show specific guide

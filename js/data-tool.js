@@ -374,13 +374,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const gapChange = document.querySelector('#performance-gap').parentElement.querySelector('.comparison-change');
         if (gap > 15) {
             gapChange.className = 'comparison-change negative';
-            gapChange.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span>High-need area identified</span>';
+            gapChange.innerHTML = '';
+            const icon1 = document.createElement('i'); icon1.className='fas fa-exclamation-triangle';
+            const span1 = document.createElement('span'); span1.textContent='High-need area identified';
+            gapChange.appendChild(icon1); gapChange.appendChild(span1);
         } else if (gap > 10) {
             gapChange.className = 'comparison-change';
-            gapChange.innerHTML = '<i class="fas fa-info-circle"></i><span>Moderate gap</span>';
+            gapChange.innerHTML = '';
+            const icon2 = document.createElement('i'); icon2.className='fas fa-info-circle';
+            const span2 = document.createElement('span'); span2.textContent='Moderate gap';
+            gapChange.appendChild(icon2); gapChange.appendChild(span2);
         } else {
             gapChange.className = 'comparison-change positive';
-            gapChange.innerHTML = '<i class="fas fa-check-circle"></i><span>Low gap - good equity</span>';
+            gapChange.innerHTML = '';
+            const icon3 = document.createElement('i'); icon3.className='fas fa-check-circle';
+            const span3 = document.createElement('span'); span3.textContent='Low gap - good equity';
+            gapChange.appendChild(icon3); gapChange.appendChild(span3);
         }
     }
     
@@ -595,22 +604,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 300);
         }, 3000);
         
-        // Add CSS animations
-        if (!document.querySelector('#notification-styles')) {
-            const style = document.createElement('style');
-            style.id = 'notification-styles';
-            style.textContent = `
-                @keyframes slideIn {
-                    from { transform: translateX(100%); opacity: 0; }
-                    to { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes slideOut {
-                    from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(100%); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
+        // Animations are moved to css/style.css to avoid dynamic style injection (safer for scanners).
     }
     
     // Export chart as PNG

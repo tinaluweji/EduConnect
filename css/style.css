@@ -483,3 +483,29 @@ footer {
         padding: 0 15px;
     }
 }
+
+/* Added notification styles for safer JS */
+
+/* Notification styles moved from JS for safety */
+.data-notification {
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease-out;
+}
+.data-notification.success { background-color: #10b981; }
+.data-notification.error { background-color: #ef4444; }
+.data-notification.info { background-color: #f59e0b; }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}

@@ -10,9 +10,9 @@ if (mobileMenuBtn && mainNav && searchBar) {
         
         // Change icon based on menu state
         if (mainNav.classList.contains('active')) {
-            mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            mobileMenuBtn.setAttribute('aria-label','Close menu'); mobileMenuBtn.classList.add('open');
         } else {
-            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            mobileMenuBtn.setAttribute('aria-label','Open menu'); mobileMenuBtn.classList.remove('open');
         }
     });
 }
