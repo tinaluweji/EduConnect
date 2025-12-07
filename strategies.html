@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Strategies | EduConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .strategy-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .strategy-content {
+            display: none;
+        }
+        
+        .strategy-content.active {
+            display: block;
+        }
+        
+        .strategy-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+        
+        .strategy-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .strategy-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .strategy-tag {
+            background-color: #e0f2fe;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .strategy-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+        }
+        
+        .evidence-level {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .evidence-high {
+            background-color: #10b98120;
+            color: #10b981;
+        }
+        
+        .evidence-medium {
+            background-color: #f59e0b20;
+            color: #f59e0b;
+        }
+        
+        .download-section {
+            background-color: #f8fafc;
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .download-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .download-icon {
+            font-size: 24px;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">Edu<span>Connect</span></div>
+                </a>
+                
+                <nav class="main-nav" id="main-nav">
+                    <ul>
+                        <li><a href="resources.html">Resource Library</a></li>
+                        <li><a href="strategies.html" class="active">Teaching Strategies</a></li>
+                        <li><a href="forum.html">Teacher Forum</a></li>
+                        <li><a href="curriculum.html">Curriculum Support</a></li>
+                        <li><a href="data-tool.html">Data Tool</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="search-bar" id="search-bar">
+                    <input type="text" placeholder="Search strategies...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero" style="padding: 80px 0; background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Evidence-Based Teaching Strategies</h1>
+                <p>Approaches for subjects and topics that require extra attention, based on district-level performance analysis and proven classroom success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategies Content -->
+    <section class="page-section">
+        <div class="container">
+            <div class="strategy-tabs">
+                <button class="tab-btn active" data-tab="mathematics">Mathematics</button>
+                <button class="tab-btn" data-tab="science">Science</button>
+                <button class="tab-btn" data-tab="literacy">Literacy</button>
+                <button class="tab-btn" data-tab="engagement">Student Engagement</button>
+                <button class="tab-btn" data-tab="assessment">Assessment</button>
+            </div>
+            
+            <!-- Mathematics Strategies -->
+            <div id="mathematics" class="strategy-content active">
+                <div class="strategy-card">
+                    <div class="strategy-meta">
+                        <span class="strategy-tag">Primary & Secondary</span>
+                        <span class="strategy-tag">Grade 1 to Form 6</span>
+                        <span class="evidence-level evidence-high">High Evidence</span>
+                    </div>
+                    <h3>Conceptual Understanding in Mathematics</h3>
+                    <p>This strategy focuses on building deep conceptual understanding rather than rote memorization. Research shows that students who understand mathematical concepts at a deeper level perform better on complex problems and retain knowledge longer.</p>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 10px;">Key Implementation Steps:</h4>
+                    <ol style="margin-left: 20px; margin-bottom: 20px;">
+                        <li>Start with concrete manipulatives before moving to pictorial representations</li>
+                        <li>Use real-world applications to demonstrate mathematical concepts</li>
+                        <li>Encourage student explanations of their thinking processes</li>
+                        <li>Connect new concepts to previously learned material</li>
+                        <li>Use formative assessment to identify and address misconceptions</li>
+                    </ol>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 10px;">District Performance Impact:</h4>
+                    <p>Schools implementing this approach have seen a 15-25% improvement in mathematics performance on standardized tests, with the most significant gains among students from underserved areas.</p>
+                    
+                    <div class="strategy-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line" style="color: var(--success);"></i>
+                            <span>25% avg. improvement</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock" style="color: var(--primary);"></i>
+                            <span>4-6 weeks to see results</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users" style="color: var(--accent);"></i>
+                            <span>Used by 500+ teachers</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="strategy-card">
+                    <h3>Problem-Based Learning in Mathematics</h3>
+                    <p>Engage students in solving complex, real-world problems that require mathematical reasoning and collaboration. This approach develops critical thinking skills and shows students the relevance of mathematics in their lives.</p>
+                    <div class="strategy-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line" style="color: var(--success);"></i>
+                            <span>18% avg. improvement</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock" style="color: var(--primary);"></i>
+                            <span>6-8 weeks to see results</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-section">
+                    <h3>Mathematics Strategy Resources</h3>
+                    <p>Download these resources to implement the strategies in your classroom:</p>
+                    <div class="download-grid">
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div>
+                                <h4>Conceptual Math Guide</h4>
+                                <p>PDF • 2.4 MB</p>
+                            </div>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div>
+                                <h4>Implementation Video</h4>
+                                <p>MP4 • 15 min</p>
+                            </div>
+                        </div>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div>
+                                <h4>Lesson Plan Template</h4>
+                                <p>DOCX • 0.8 MB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Science Strategies -->
+            <div id="science" class="strategy-content">
+                <div class="strategy-card">
+                    <h3>Inquiry-Based Science Teaching</h3>
+                    <p>Encourage students to ask questions, design experiments, and develop explanations based on evidence. This approach builds critical thinking skills and deepens understanding of scientific concepts.</p>
+                    <div class="strategy-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line" style="color: var(--success);"></i>
+                            <span>22% avg. improvement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Literacy Strategies -->
+            <div id="literacy" class="strategy-content">
+                <div class="strategy-card">
+                    <h3>Differentiated Reading Instruction</h3>
+                    <p>Tailor reading instruction to meet individual student needs through small group instruction, leveled texts, and targeted skill development.</p>
+                    <div class="strategy-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line" style="color: var(--success);"></i>
+                            <span>20% avg. improvement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Engagement Strategies -->
+            <div id="engagement" class="strategy-content">
+                <div class="strategy-card">
+                    <h3>Active Learning Techniques</h3>
+                    <p>Increase student engagement through interactive activities, collaborative learning, and technology integration that makes learning more participatory and meaningful.</p>
+                    <div class="strategy-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line" style="color: var(--success);"></i>
+                            <span>30% avg. improvement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Assessment Strategies -->
+            <div id="assessment" class="strategy-content">
+                <div class="strategy-card">
+                    <h3>Formative Assessment Strategies</h3>
+                    <p>Implement ongoing assessment techniques that provide immediate feedback to guide instruction and support student learning.</p>
+                    <div class="strategy-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line" style="color: var(--success);"></i>
+                            <span>18% avg. improvement</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>EduConnect</h3>
+                    <p>Bridging the educational resource gap for teachers in remote and underserved areas.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="resources.html">Resource Library</a></li>
+                        <li><a href="strategies.html">Teaching Strategies</a></li>
+                        <li><a href="forum.html">Teacher Forum</a></li>
+                        <li><a href="curriculum.html">Curriculum Support</a></li>
+                        <li><a href="data-tool.html">Data Selection Tool</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@educonnect.org</li>
+                        <li><i class="fas fa-phone"></i> +260 974223594</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 5033 Luampa</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on new resources and teaching strategies.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 EduConnect. All rights reserved. | Empowering teachers in remote and underserved areas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/strategies.js"></script>
+</body>
+</html>

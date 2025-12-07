@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Library | EduConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .resource-filters {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .filter-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius);
+            font-size: 15px;
+            background-color: white;
+        }
+        
+        .resource-search {
+            margin-top: 20px;
+        }
+        
+        .resource-search input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius);
+            font-size: 16px;
+        }
+        
+        .resource-count {
+            margin-top: 20px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        .resource-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .resource-actions .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .ts-number {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+        
+        .page-btn {
+            padding: 10px 16px;
+            border: 1px solid #cbd5e1;
+            background-color: white;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .page-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .page-btn:hover:not(.active) {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">Edu<span>Connect</span></div>
+                </a>
+                
+                <nav class="main-nav" id="main-nav">
+                    <ul>
+                        <li><a href="resources.html" class="active">Resource Library</a></li>
+                        <li><a href="strategies.html">Teaching Strategies</a></li>
+                        <li><a href="forum.html">Teacher Forum</a></li>
+                        <li><a href="curriculum.html">Curriculum Support</a></li>
+                        <li><a href="data-tool.html">Data Tool</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="search-bar" id="search-bar">
+                    <input type="text" placeholder="Search for resources...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero" style="padding: 80px 0; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Resource Library</h1>
+                <p>Access teaching materials, including teacher's books (accessible via unique TS#), learner's books, charts, and lesson plans for both primary and secondary education.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Filters -->
+    <section class="page-section">
+        <div class="container">
+            <div class="resource-filters">
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label for="education-level">Education Level</label>
+                        <select id="education-level" class="filter-select">
+                            <option value="all">All Levels</option>
+                            <option value="primary">Primary School</option>
+                            <option value="secondary">Secondary School</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" class="filter-select">
+                            <option value="all">All Subjects</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="literacy">Literacy</option>
+                            <option value="social-studies">Social Studies</option>
+                            <option value="languages">Languages</option>
+                            <option value="stem">STEM</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="resource-type">Resource Type</label>
+                        <select id="resource-type" class="filter-select">
+                            <option value="all">All Types</option>
+                            <option value="teacher-book">Teacher's Book</option>
+                            <option value="learner-book">Learner's Book</option>
+                            <option value="lesson-plan">Lesson Plan</option>
+                            <option value="chart">Chart/Visual Aid</option>
+                            <option value="activity">Activity Sheet</option>
+                            <option value="assessment">Assessment Tool</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="grade">Grade Level</label>
+                        <select id="grade" class="filter-select">
+                            <option value="all">All Grades</option>
+                            <option value="1-3">Grades 1-3</option>
+                            <option value="4-6">Grades 4-6</option>
+                            <option value="Form 1-4">Form 1-4</option>
+                            <option value="Form 5-6">Form 5-6</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="resource-search">
+                    <input type="text" id="resource-search" placeholder="Search resources by keyword, TS#, or topic...">
+                </div>
+                
+                <div class="resource-count">
+                    Showing <span id="resource-count">24</span> resources
+                </div>
+            </div>
+            
+            <!-- Resource Grid -->
+            <div class="resource-grid" id="resource-grid">
+                <!-- Resources will be loaded here via JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>EduConnect</h3>
+                    <p>Bridging the educational resource gap for teachers in remote and underserved areas.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="resources.html">Resource Library</a></li>
+                        <li><a href="strategies.html">Teaching Strategies</a></li>
+                        <li><a href="forum.html">Teacher Forum</a></li>
+                        <li><a href="curriculum.html">Curriculum Support</a></li>
+                        <li><a href="data-tool.html">Data Selection Tool</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@educonnect.org</li>
+                        <li><i class="fas fa-phone"></i> +260 974223594</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 5033 Luampa</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on new resources and teaching strategies.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email address">
+                        <button class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 EduConnect. All rights reserved. | Empowering teachers in remote and underserved areas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/resources.js"></script>
+</body>
+</html>
