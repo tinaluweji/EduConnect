@@ -1,0 +1,17 @@
+:root {
+  --primary-color: #004080;
+  --accent-color: #ff6600;
+  --bg-light: #f9f9f9;
+  --bg-dark: #333333;
+  --text-main: #333333;
+  --text-light: #ffffff;
+}
+
+body.dark-mode {
+  --primary-color: #66b2ff;
+  --accent-color: #ff9933;
+  --bg-light: #1a1a1a;
+  --bg-dark: #000000;
+  --text-main: #e6e6e6;
+  --text-light: #ffffff;
+}
