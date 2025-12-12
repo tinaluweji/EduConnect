@@ -1,4 +1,4 @@
-// Curriculum support functionality
+  // Curriculum support functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Handle guide buttons
     const guideButtons = document.querySelectorAll('.curriculum-item button');

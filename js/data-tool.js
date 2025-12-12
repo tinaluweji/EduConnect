@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         grades: ['all'],
         metric: 'performance',
         timeRange: 'current',
-        customRange: { start: 2020, end: 2023 },
+        customRange: { start: 2022, end: 2025 },
         compareTrend: true,
         showProjections: false
     };
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sample datasets
     const datasets = {
         performance: {
-            labels: ['Riverside District', 'Highland District', 'Valley District', 'Coastal District', 'Urban District', 'Rural District'],
+            labels: ['Nalolo District', 'Sioma District', 'Luampa District', 'Nkeyema District', 'Mongu District', 'Sikongo District'],
             datasets: [{
                 label: 'Student Performance (%)',
                 data: [84.7, 72.3, 68.9, 76.5, 81.2, 63.4],
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }]
         },
         growth: {
-            labels: ['Riverside District', 'Highland District', 'Valley District', 'Coastal District', 'Urban District', 'Rural District'],
+            labels: ['Nalolo District', 'Sioma District', 'Luampa District', 'Nkeyema District', 'Mongu District', 'Sikongo District'],
             datasets: [{
                 label: 'Student Growth (Points)',
                 data: [8.3, 4.7, 3.2, 5.8, 7.1, 2.4],
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }]
         },
         attendance: {
-            labels: ['Riverside District', 'Highland District', 'Valley District', 'Coastal District', 'Urban District', 'Rural District'],
+            labels: ['Nalolo District', 'Sioma District', 'Luampa District', 'Nkeyema District', 'Mongu District', 'Sikongo District'],
             datasets: [{
                 label: 'Attendance Rate (%)',
                 data: [94.2, 88.7, 85.3, 91.6, 92.8, 82.1],
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }]
         },
         engagement: {
-            labels: ['Riverside District', 'Highland District', 'Valley District', 'Coastal District', 'Urban District', 'Rural District'],
+            labels: ['Nalolo District', 'Sioma District', 'Luampa District', 'Nkeyema District', 'Mongu District', 'Sikongo District'],
             datasets: [{
                 label: 'Student Engagement Score',
                 data: [8.7, 7.2, 6.5, 8.1, 8.4, 5.9],
@@ -78,24 +78,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Time series data for line charts
     const timeSeriesData = {
         performance: {
-            labels: ['2019', '2020', '2021', '2022', '2023'],
+            labels: ['2021', '2022', '2023', '2024', '2025'],
             datasets: [
                 {
-                    label: 'Riverside District',
+                    label: 'Mongu District',
                     data: [78.3, 79.1, 81.4, 83.2, 84.7],
                     borderColor: 'rgb(37, 99, 235)',
                     backgroundColor: 'rgba(37, 99, 235, 0.1)',
                     tension: 0.4
                 },
                 {
-                    label: 'Highland District',
+                    label: 'Luampa District',
                     data: [65.8, 67.2, 69.4, 70.8, 72.3],
                     borderColor: 'rgb(14, 165, 233)',
                     backgroundColor: 'rgba(14, 165, 233, 0.1)',
                     tension: 0.4
                 },
                 {
-                    label: 'Rural District',
+                    label: 'Sikongo District',
                     data: [58.4, 59.7, 61.2, 62.8, 63.4],
                     borderColor: 'rgb(239, 68, 68)',
                     backgroundColor: 'rgba(239, 68, 68, 0.1)',
@@ -107,18 +107,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Table data
     const tableData = [
-        { district: 'Riverside District', subject: 'Mathematics', grade: '7-9', performance: 84.7, growth: 8.3, trend: 'up' },
-        { district: 'Riverside District', subject: 'Science', grade: '7-9', performance: 82.4, growth: 7.8, trend: 'up' },
-        { district: 'Riverside District', subject: 'Literacy', grade: '7-9', performance: 87.2, growth: 8.9, trend: 'up' },
-        { district: 'Highland District', subject: 'Mathematics', grade: '7-9', performance: 72.3, growth: 4.7, trend: 'up' },
-        { district: 'Highland District', subject: 'Science', grade: '7-9', performance: 70.8, growth: 4.2, trend: 'up' },
-        { district: 'Highland District', subject: 'Literacy', grade: '7-9', performance: 73.8, growth: 5.1, trend: 'neutral' },
-        { district: 'Valley District', subject: 'Mathematics', grade: '7-9', performance: 68.9, growth: 3.2, trend: 'neutral' },
-        { district: 'Valley District', subject: 'Science', grade: '7-9', performance: 66.7, growth: 2.8, trend: 'down' },
-        { district: 'Valley District', subject: 'Literacy', grade: '7-9', performance: 71.2, growth: 3.7, trend: 'up' },
-        { district: 'Rural District', subject: 'Mathematics', grade: '7-9', performance: 63.4, growth: 2.4, trend: 'up' },
-        { district: 'Rural District', subject: 'Science', grade: '7-9', performance: 61.8, growth: 1.9, trend: 'neutral' },
-        { district: 'Rural District', subject: 'Literacy', grade: '7-9', performance: 65.1, growth: 2.8, trend: 'up' }
+        { district: 'Mongu District', subject: 'Mathematics', grade: '7-9', performance: 84.7, growth: 8.3, trend: 'up' },
+        { district: 'Mongu District', subject: 'Science', grade: '7-9', performance: 82.4, growth: 7.8, trend: 'up' },
+        { district: 'Mongu District', subject: 'Literacy', grade: '7-9', performance: 87.2, growth: 8.9, trend: 'up' },
+        { district: 'Luampa District', subject: 'Mathematics', grade: '7-9', performance: 72.3, growth: 4.7, trend: 'up' },
+        { district: 'Luampa District', subject: 'Science', grade: '7-9', performance: 70.8, growth: 4.2, trend: 'up' },
+        { district: 'Luampa District', subject: 'Literacy', grade: '7-9', performance: 73.8, growth: 5.1, trend: 'neutral' },
+        { district: 'Sioma District', subject: 'Mathematics', grade: '7-9', performance: 68.9, growth: 3.2, trend: 'neutral' },
+        { district: 'Sioma District', subject: 'Science', grade: '7-9', performance: 66.7, growth: 2.8, trend: 'down' },
+        { district: 'Sioma District', subject: 'Literacy', grade: '7-9', performance: 71.2, growth: 3.7, trend: 'up' },
+        { district: 'Sikongo District', subject: 'Mathematics', grade: '7-9', performance: 63.4, growth: 2.4, trend: 'up' },
+        { district: 'Sikongo District', subject: 'Science', grade: '7-9', performance: 61.8, growth: 1.9, trend: 'neutral' },
+        { district: 'Sikongo District', subject: 'Literacy', grade: '7-9', performance: 65.1, growth: 2.8, trend: 'up' }
     ];
     
     // Initialize multi-select dropdowns
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Apply district filter if not "all"
             if (!filters.districts.includes('all') && filters.districts.length > 0) {
-                const allDistricts = ['Riverside District', 'Highland District', 'Valley District', 'Coastal District', 'Urban District', 'Rural District'];
+                const allDistricts = ['Nalolo District', 'Sioma District', 'Luampa District', 'Nkeyema District', 'Mongu District', 'Sikongo District'];
                 const districtIndices = filters.districts.map(d => {
                     const districtMap = {
                         'district1': 0, 'district2': 1, 'district3': 2, 
@@ -414,10 +414,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Filter by district
         if (!filters.districts.includes('all') && filters.districts.length > 0) {
             const districtMap = {
-                'district1': 'Riverside District',
-                'district2': 'Highland District',
-                'district3': 'Valley District',
-                'district6': 'Rural District'
+                'district1': ' Mongu District',
+                'district2': 'Luampa District',
+                'district3': 'Sioma District',
+                'district6': 'Sikongo District'
             };
             const selectedDistricts = filters.districts.map(d => districtMap[d]).filter(d => d);
             filteredData = filteredData.filter(row => selectedDistricts.includes(row.district));
