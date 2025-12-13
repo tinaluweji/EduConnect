@@ -11,15 +11,14 @@ const resources = [
     { id: 9, title: "Digital Literacy Curriculum", description: "Complete curriculum for teaching digital literacy skills in the modern classroom.", type: "lesson-plan", subject: "stem", level: "secondary", grade: "10-12", tsNumber: "TS#DIG909", icon: "fas fa-laptop-code" }
 ];
 
-
-// Render resources — *NO INLINE EVENTS*
+// Render resources
 function renderResources(filteredResources) {
     const resourceGrid = document.getElementById('resource-grid');
     const resourceCount = document.getElementById('resource-count');
 
     if (!resourceGrid) return;
     resourceGrid.innerHTML = '';
-    if (resourceCount) resourceCount.textContent = filteredResources.length;
+    if (resourceCount) resourceCount.textContent = `Resources Found: ${filteredResources.length}`;
 
     filteredResources.forEach(resource => {
         let iconColor = 'var(--primary)';
@@ -58,8 +57,7 @@ function renderResources(filteredResources) {
     });
 }
 
-
-// Filtering (unchanged)
+// Filtering
 function filterResources() {
     const level = document.getElementById('education-level').value;
     const subject = document.getElementById('subject').value;
@@ -76,16 +74,23 @@ function filterResources() {
     );
 }
 
+// Setup filters
+function setupFilters() {
+    const filterElements = ['education-level', 'subject', 'resource-type', 'grade', 'resource-search'];
+    filterElements.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => renderResources(filterResources()));
+    });
+}
 
-// 🔥 Event Delegation (Secure Replacement for onclick="")
+// Event delegation
 document.addEventListener('click', function (e) {
     const id = e.target.closest("[data-id]")?.dataset.id;
     if (!id) return;
 
     if (e.target.closest(".view-resource")) return viewResource(+id);
-    if (e.target.closest(".download-resource")) return download-resource" data-id="+id);
+    if (e.target.closest(".download-resource")) return downloadResource(+id);
 });
-
 
 // Actions
 function viewResource(id) {
@@ -93,11 +98,10 @@ function viewResource(id) {
     alert(`Viewing Resource → ${r.title}\nTS: ${r.tsNumber}`);
 }
 
-function download-resource" data-id="id) {
+function downloadResource(id) {
     const r = resources.find(x => x.id === id);
     alert(`Downloading → ${r.title}\nTS: ${r.tsNumber}`);
 }
-
 
 // Init
 document.addEventListener("DOMContentLoaded", () => {

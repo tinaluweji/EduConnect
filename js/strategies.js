@@ -1,49 +1,32 @@
-// Strategy tab functionality
-document.addEventListener('DOMContentLoaded', function() {
+// Strategy Tabs JS
+document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.strategy-content');
-    
+
     // Function to switch tabs
-    function switchTab(tabId) {
-        // Remove active class from all buttons and contents
+    const switchTab = (tabId) => {
         tabButtons.forEach(btn => btn.classList.remove('active'));
         tabContents.forEach(content => content.classList.remove('active'));
-        
-        // Add active class to clicked button
-        const activeButton = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-        if (activeButton) {
-            activeButton.classList.add('active');
-        }
-        
-        // Show corresponding content
-        const activeContent = document.getElementById(tabId);
-        if (activeContent) {
-            activeContent.classList.add('active');
-        }
-    }
-    
-    // Add click event listeners to tab buttons
+
+        document.querySelector(`.tab-btn[data-tab="${tabId}"]`)?.classList.add('active');
+        document.getElementById(tabId)?.classList.add('active');
+    };
+
+    // Event listeners for tab buttons
     tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const tabId = button.getAttribute('data-tab');
-            switchTab(tabId);
-        });
+        button.addEventListener('click', () => switchTab(button.dataset.tab));
     });
-    
-    // Check if there's a tab parameter in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const tabParam = urlParams.get('tab');
-    if (tabParam) {
-        switchTab(tabParam);
-    }
-    
-    // Setup download buttons
-    const downloadItems = document.querySelectorAll('.download-item');
-    downloadItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const title = this.querySelector('h4').textContent;
-            const format = this.querySelector('p').textContent;
-            alert(`Downloading: ${title}\n\nFormat: ${format}\n\nThis would start a download in a real application.`);
+
+    // Activate tab from URL parameter if present
+    const urlTab = new URLSearchParams(window.location.search).get('tab');
+    if (urlTab) switchTab(urlTab);
+
+    // Download buttons
+    document.querySelectorAll('.download-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const title = item.querySelector('h4')?.textContent || 'Untitled';
+            const format = item.querySelector('p')?.textContent || 'Unknown';
+            alert(`Downloading: ${title}\nFormat: ${format}\nThis would trigger a real download in production.`);
         });
     });
 });

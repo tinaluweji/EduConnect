@@ -1,87 +1,97 @@
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mainNav = document.getElementById('main-nav');
-const searchBar = document.getElementById('search-bar');
+// Header & navigation functionality – cPanel safe
+document.addEventListener('DOMContentLoaded', () => {
 
-if (mobileMenuBtn && mainNav && searchBar) {
-    mobileMenuBtn.addEventListener('click', () => {
-        mainNav.classList.toggle('active');
-        searchBar.classList.toggle('active');
-        
-        // Change icon based on menu state
-        if (mainNav.classList.contains('active')) {
-            mobileMenuBtn.setAttribute('aria-label','Close menu'); mobileMenuBtn.classList.add('open');
-        } else {
-            mobileMenuBtn.setAttribute('aria-label','Open menu'); mobileMenuBtn.classList.remove('open');
-        }
-    });
-}
+    const ui = {
+        mobileBtn: document.getElementById('mobile-menu-btn'),
+        mainNav: document.getElementById('main-nav'),
+        searchBar: document.getElementById('search-bar')
+    };
 
-// Set active navigation link based on current page
-document.addEventListener('DOMContentLoaded', function() {
-    // Get current page filename
-    const currentPage = window.location.pathname.split('/').pop();
-    
-    // Find all navigation links
-    const navLinks = document.querySelectorAll('.main-nav a');
-    
-    // Set active class for current page
-    navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        
-        // Check if this link points to the current page
-        if (linkPage === currentPage || 
-            (currentPage === '' && linkPage === 'index.html') ||
-            (currentPage === '' && linkPage === './')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-    
-    // Handle newsletter form submission
-    const newsletterForms = document.querySelectorAll('.newsletter-form');
-    newsletterForms.forEach(form => {
-        const input = form.querySelector('input[type="email"]');
-        const button = form.querySelector('button');
-        
-        if (button) {
-            button.addEventListener('click', function(e) {
+    /* ---------------- NOTIFICATION ---------------- */
+
+    function notify(message, type = 'info') {
+        const old = document.querySelector('.data-notification');
+        if (old) old.remove();
+
+        const note = document.createElement('div');
+        note.className = `data-notification ${type}`;
+        note.textContent = message;
+
+        document.body.appendChild(note);
+        setTimeout(() => note.remove(), 3000);
+    }
+
+    /* ---------------- MOBILE MENU ---------------- */
+
+    if (ui.mobileBtn && ui.mainNav && ui.searchBar) {
+        ui.mobileBtn.addEventListener('click', () => {
+            ui.mainNav.classList.toggle('active');
+            ui.searchBar.classList.toggle('active');
+            ui.mobileBtn.classList.toggle('open');
+
+            ui.mobileBtn.setAttribute(
+                'aria-label',
+                ui.mainNav.classList.contains('active')
+                    ? 'Close menu'
+                    : 'Open menu'
+            );
+        });
+    }
+
+    /* ---------------- ACTIVE NAV LINK ---------------- */
+
+    const currentPage =
+        window.location.pathname.split('/').pop() || 'index.html';
+
+    document
+        .querySelectorAll('.main-nav a')
+        .forEach(link => {
+            const target = link.getAttribute('href');
+            link.classList.toggle(
+                'active',
+                target === currentPage || target === './'
+            );
+        });
+
+    /* ---------------- NEWSLETTER ---------------- */
+
+    document
+        .querySelectorAll('.newsletter-form')
+        .forEach(form => {
+            form.addEventListener('submit', e => {
                 e.preventDefault();
-                
-                if (input && input.value) {
-                    // In a real app, you would send this to a server
-                    alert('Thank you for subscribing to our newsletter!');
-                    input.value = '';
-                } else {
-                    alert('Please enter your email address.');
+
+                const input = form.querySelector('input[type="email"]');
+                if (!input || !input.value.trim()) {
+                    notify('Please enter a valid email address.', 'error');
+                    return;
                 }
+
+                input.value = '';
+                notify('Thank you for subscribing!', 'success');
             });
-        }
-    });
-    
-    // Handle search functionality
-    const searchInputs = document.querySelectorAll('.search-bar input');
-    const searchButtons = document.querySelectorAll('.search-bar button');
-    
-    searchButtons.forEach((button, index) => {
-        button.addEventListener('click', function() {
-            const searchTerm = searchInputs[index].value;
-            if (searchTerm.trim()) {
-                // In a real app, you would redirect to search results
-                alert(`Searching for: ${searchTerm}`);
-            }
         });
-        
-        // Also allow Enter key to trigger search
-        searchInputs[index].addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const searchTerm = searchInputs[index].value;
-                if (searchTerm.trim()) {
-                    // In a real app, you would redirect to search results
-                    alert(`Searching for: ${searchTerm}`);
-                }
-            }
+
+    /* ---------------- SEARCH ---------------- */
+
+    document
+        .querySelectorAll('.search-bar')
+        .forEach(bar => {
+            const input = bar.querySelector('input');
+            const button = bar.querySelector('button');
+
+            if (!input || !button) return;
+
+            const runSearch = () => {
+                const term = input.value.trim();
+                if (!term) return;
+                notify(`Searching for "${term}"`);
+                input.value = '';
+            };
+
+            button.addEventListener('click', runSearch);
+            input.addEventListener('keydown', e => {
+                if (e.key === 'Enter') runSearch();
+            });
         });
-    });
 });

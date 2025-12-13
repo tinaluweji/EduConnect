@@ -1,72 +1,63 @@
-  // Curriculum support functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle guide buttons
+ // Curriculum support functionality (cPanel-safe version)
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Handle guide buttons using data attributes
     const guideButtons = document.querySelectorAll('.curriculum-item button');
-    
+
     guideButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const guideType = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-            
-            // Scroll to the appropriate guide section
-            const guideSection = document.querySelector('.guide-section');
-            if (guideSection) {
-                guideSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            // In a real app, you might load different guide content based on type
-            console.log(`Loading guide for: ${guideType}`);
+        button.addEventListener('click', () => {
+            const guideType = button.dataset.guide;
+
+            scrollToGuideSection();
+            updateGuideTitle(guideType);
         });
     });
-    
+
     // Handle video item clicks
     const videoItems = document.querySelectorAll('.video-item');
+
     videoItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const title = this.querySelector('h4').textContent;
-            alert(`Playing video: ${title}\n\nIn a real application, this would play the selected video.`);
+        item.addEventListener('click', () => {
+            const titleElement = item.querySelector('h4');
+            const title = titleElement ? titleElement.textContent : 'Video';
+
+            window.alert(
+                'Playing video: ' + title +
+                '\n\nIn a real application, this would play the selected video.'
+            );
         });
+    });
+
+    // FAQ toggle (delegated)
+    document.addEventListener('click', event => {
+        const faqItem = event.target.closest('.faq-item');
+        if (faqItem) {
+            faqItem.classList.toggle('active');
+        }
     });
 });
 
-// Toggle FAQ items
-function toggleFAQ(item) {
-    if (!item) return;
-    if (item.classList) item.classList.toggle('active');
-}
+/* ---------- Helper functions (scoped safely) ---------- */
 
-// Show specific guide
-function showGuide(guideType) {
-    // Scroll to guide section
+function scrollToGuideSection() {
     const guideSection = document.querySelector('.guide-section');
     if (guideSection) {
         guideSection.scrollIntoView({ behavior: 'smooth' });
     }
-    
-    // Change guide content based on type
-    const guideContainer = document.getElementById('transition-guide');
-    if (guideContainer) {
-        let guideTitle, guideContent;
-        
-        switch(guideType) {
-            case 'transition':
-                guideTitle = 'Curriculum Transition Guide';
-                break;
-            case 'blended':
-                guideTitle = 'Blended Learning Implementation Guide';
-                break;
-            case 'aids':
-                guideTitle = 'Teaching Aids Development Guide';
-                break;
-            default:
-                guideTitle = 'Curriculum Support Guide';
-        }
-        
-        // Update the section header
-        const sectionHeader = document.querySelector('.guide-section .section-header h2');
-        if (sectionHeader) {
-            sectionHeader.textContent = guideTitle;
-        }
-        
-        console.log(`Showing guide for: ${guideType}`);
+}
+
+function updateGuideTitle(type) {
+    const titles = {
+        transition: 'Curriculum Transition Guide',
+        blended: 'Blended Learning Implementation Guide',
+        aids: 'Teaching Aids Development Guide'
+    };
+
+    const sectionHeader = document.querySelector(
+        '.guide-section .section-header h2'
+    );
+
+    if (sectionHeader) {
+        sectionHeader.textContent = titles[type] || 'Curriculum Support Guide';
     }
 }
